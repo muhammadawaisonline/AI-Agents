@@ -35,12 +35,17 @@ agent = Agent(
     model= OpenAIChatCompletionsModel(model="gemini-2.0-flash", openai_client=client),
     tools=[fetch_weather]
 )
+while True:
+    query= input("Enter the location for Weather Report: ")
 
-query= input("Enter the location for Weather Report: ")
+    if query.lower() =="exit":
+        print("Exiting the weather report....")
+        time.sleep(2)
+        break
 
-result = Runner.run_sync(agent, query)
+    result = Runner.run_sync(agent, query)
 
-print(result.final_output)
+    print(result.final_output)
 
 
 
