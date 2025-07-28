@@ -12,7 +12,7 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 client = AsyncOpenAI(
     api_key = gemini_api_key,
-    base_url = "https://generativelanguage.googleapis.com/v1beta/opeai"
+    base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 
 class Quiz(BaseModel):
@@ -29,4 +29,4 @@ agent = Agent(
 query = input("Let's Generate Quiz: ")
 
 result = Runner.run_sync(agent, query)
-print(result)
+print(result.final_output)
