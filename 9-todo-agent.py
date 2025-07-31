@@ -15,7 +15,7 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 client = AsyncOpenAI(
     api_key=gemini_api_key,
-    base_url="https://generativelaunage.googleapis.com/v1beta/openai/"
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 )
 @function_tool
 def list_todos():
@@ -23,7 +23,7 @@ def list_todos():
     try:
         print("listing todos...")
         time.sleep(4)
-        with open("Agent/todos.json", "r") as file:
+        with open("agent/todos.json", "r") as file:
             data = json.load(file)
         return data
     except Exception as e:
@@ -33,17 +33,17 @@ def list_todos():
 @function_tool
 def add_todo(title: str, description:str="", due_date:str="" ) -> Dict[str, Any]:
     """ Goal: 
-            Add new todo to the todo.json file
+            Add new todo to the todos.json file
         Args:
             title: The title of the todo
             description: Description of the newly add todo
             due_date: the expiry date of the todo
         expected_output:
-            A new todo added with title, descrption, due_date todos.json file """
+            A new todo added with title, descrption, due_date in todos.json file """
     try:
 
         try:
-            with open("Agent/todos.json") as file:
+            with open("agent/todos.json") as file:
                 todo= json.load(file)
         except FileNotFoundError:
                 todos = [] #if file doesn't exist start with empty file
@@ -60,7 +60,7 @@ def add_todo(title: str, description:str="", due_date:str="" ) -> Dict[str, Any]
         #append and save
         todos.append(new_todo)
         with open("Agent/todos.json", "w") as file:
-            json.dump(todos, file, intent= 2)
+            json.dump(todos, file, indent=2)
 
             return new_todo
     except Exception as e:
