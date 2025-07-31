@@ -1,0 +1,8 @@
+uv init                                 (initialize uv environment in the project directory)
+uv venv                                 (Activate uv environment)
+uv add                                  (add libraries in uv environment)
+.venv/Scripts/activate                  (Activate Environment)
+deactivate                              (Deactivate UV Environment)
+git clone                               (To colone github repository in cmd)
+uv sync                                 (when you colone github repostory, to sync uv environment and install libararies to run on you local device)
+                    
